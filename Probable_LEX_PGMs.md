@@ -7,3 +7,9 @@ Probable LEX PGMs
 
 
 this is it ig
+
+YACC pgms
+
+        1. Yacc pgm for language d={a^nb,n>=0}
+        2. pgm to check arithematic expressions
+        3. implement calculator using Yacc
