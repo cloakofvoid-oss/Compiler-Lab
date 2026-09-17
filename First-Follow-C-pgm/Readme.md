@@ -1,5 +1,5 @@
 # C Program to Check the First and Follow
-## Date :
+## Date : 17/9
 ## Algorithm
     Start
     Calculating first, α → t β
