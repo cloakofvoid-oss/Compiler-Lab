@@ -22,6 +22,6 @@ this is it ig
         2. pgm to check arithematic expressions
         3. implement calculator using Yacc
 
-## Other c programs
+## Other C programs
     1. 1st and follow 
     2.epsilon closure
