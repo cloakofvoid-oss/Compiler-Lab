@@ -7,6 +7,6 @@ This is the program repostry for the comipiler lab programs the below are the pr
     3. Lex pgm to count the number of lines words and characters in a file : 6/8
     4. Lex Pgm to convert 'abc' to 'ABC' : 31/8
     5. Lex pgm to count the vowels and consonants in a file : 31/8
-    6. Yacc pgm for language d={a^nb,n>=0}
-    7. pgm to check arithematic expressions
-    8. implement calculator using Yacc
+    6. Yacc pgm for language d={a^nb,n>=0} : 31/8
+    7. pgm to check arithematic expressions: 7/09
+    8. implement calculator using Yacc: 7/09
