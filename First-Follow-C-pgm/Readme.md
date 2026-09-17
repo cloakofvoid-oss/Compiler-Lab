@@ -13,3 +13,5 @@
     Stop
 
 ## Output : 
+
+<img width="534" height="367" alt="image" src="https://github.com/user-attachments/assets/9144deec-ba42-4497-a75d-6652dfb95054" />
