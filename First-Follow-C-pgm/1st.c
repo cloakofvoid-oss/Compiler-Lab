@@ -49,7 +49,7 @@ void first(char c)
         if (a[k][0] == c)
         {
             if (a[k][2] == '$')
-                follow(a[k][0]);
+                f[m++] = '$';
             else if (islower(a[k][2]))
                 f[m++] = a[k][2];
             else
