@@ -1,8 +1,7 @@
 # implement calculator using Yacc
 ## Date : 07/09/26
 
-##Algorithm :
-**Algorithm: Arithmetic Expression Evaluator (Lex/Yacc)**
+## Algorithm : Arithmetic Calculator (Lex/Yacc)
 
 1. **Start**
 2. Print prompt and call `yyparse()`
