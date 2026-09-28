@@ -10,3 +10,5 @@ This is the program repostry for the comipiler lab programs the below are the pr
     6. Yacc pgm for language d={a^nb,n>=0} : 31/8
     7. pgm to check arithematic expressions: 7/09
     8. implement calculator using Yacc: 7/09
+    9. First and Follow : 17/9
+    10. Epsilon Closure : 28/9
