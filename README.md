@@ -1,7 +1,7 @@
 # Compiler-Lab
-This is the program repostry for the comipiler lab programs the below are the programs in the record 
+This is the program repository for the compiler lab programs the below are the programs in the record 
 
-## List Of pgm in Record with the dates
+## List Of program in Record with the dates
     1. Lexical Analysis using C : 27/7
     2. Introduction to Compilers 6/8
     3. Lex pgm to count the number of lines words and characters in a file : 6/8
@@ -10,5 +10,7 @@ This is the program repostry for the comipiler lab programs the below are the pr
     6. Yacc pgm for language d={a^nb,n>=0} : 31/8
     7. pgm to check arithematic expressions: 7/09
     8. implement calculator using Yacc: 7/09
-    9. First and Follow : 17/9
+    9. First and Follow using C : 17/9
     10. Epsilon Closure : 28/9
+    11. Epsilon NFA to NFA
+    12. Intermediate code generation
