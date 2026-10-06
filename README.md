@@ -12,5 +12,5 @@ This is the program repository for the compiler lab programs the below are the p
     8. implement calculator using Yacc: 7/09
     9. First and Follow using C : 17/9
     10. Epsilon Closure : 28/9
-    11. Epsilon NFA to NFA
-    12. Intermediate code generation
+    11. Epsilon NFA to NFA : 28/9
+    12. Intermediate code generation 28/9
