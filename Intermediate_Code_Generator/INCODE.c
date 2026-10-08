@@ -1,45 +1,167 @@
 #include <stdio.h>
 #include <string.h>
-char op[2], arg1[5], arg2[5], result[5];
+#include <ctype.h>
+
+char expr[100];
+int temp = 1;
+
+char *newtemp()
+{
+    static char t[20];
+    sprintf(t, "t%d", temp++);
+    return t;
+}
+
+int precedence(char op)
+{
+    if (op == '*' || op == '/')
+        return 2;
+
+    if (op == '+' || op == '-')
+        return 1;
+
+    return 0;
+}
+
+void generate(char op)
+{
+    char left[20], right[20], result[20];
+    int i, j;
+
+    while (1)
+    {
+        int found = 0;
+
+        for (i = 0; expr[i] != '\0'; i++)
+        {
+            if (expr[i] == op)
+            {
+                found = 1;
+
+                /* Get left operand */
+                j = i - 1;
+                while (j >= 0 && expr[j] == ' ')
+                    j--;
+
+                int end = j;
+
+                while (j >= 0 && (isalnum(expr[j]) || expr[j] == '_'))
+                    j--;
+
+                int start = j + 1;
+
+                strncpy(left, &expr[start], end - start + 1);
+                left[end - start + 1] = '\0';
+
+                /* Get right operand */
+                j = i + 1;
+
+                int k = 0;
+
+                while (expr[j] != '\0' &&
+                       (isalnum(expr[j]) || expr[j] == '_'))
+                {
+                    right[k++] = expr[j++];
+                }
+
+                right[k] = '\0';
+
+                /* Generate temporary variable */
+                strcpy(result, newtemp());
+
+                printf("%s = %s %c %s\n",
+                       result, left, op, right);
+
+                /*
+                 * Replace:
+                 *
+                 * left op right
+                 *
+                 * with:
+                 *
+                 * result
+                 */
+
+                char newexpr[100];
+
+                strncpy(newexpr, expr, start);
+                newexpr[start] = '\0';
+
+                strcat(newexpr, result);
+                strcat(newexpr, &expr[j]);
+
+                strcpy(expr, newexpr);
+
+                break;
+            }
+        }
+
+        if (!found)
+            break;
+    }
+}
+
+void process_parentheses()
+{
+    int open, close;
+
+    while (strchr(expr, '(') != NULL)
+    {
+        open = -1;
+        close = -1;
+
+        /* Find innermost parentheses */
+        for (int i = 0; expr[i] != '\0'; i++)
+        {
+            if (expr[i] == '(')
+                open = i;
+
+            if (expr[i] == ')' && open != -1)
+            {
+                close = i;
+                break;
+            }
+        }
+
+        char sub[100];
+        int k = 0;
+
+        for (int i = open + 1; i < close; i++)
+            sub[k++] = expr[i];
+
+        sub[k] = '\0';
+
+        strcpy(expr + open, sub);
+
+        /*
+         * Remove the closing parenthesis.
+         */
+        memmove(
+            expr + open + strlen(sub),
+            expr + close + 1,
+            strlen(expr) - close
+        );
+    }
+}
+
 int main()
 {
-	FILE *fp1, *fp2;
-	fp1 = fopen("input.txt", "r");
-	fp2 = fopen("output.txt", "w");
-	while (!feof(fp1))
-	{
+    printf("Enter an expression: ");
+    scanf("%s", expr);
 
-		fscanf(fp1, "%s%s%s%s", op, arg1, arg2, result);
-		if (strcmp(op, "+") == 0)
-		{
-			fprintf(fp2, "\nMOV R0,%s", arg1);
-			fprintf(fp2, "\nADD R0,%s", arg2);
-			fprintf(fp2, "\nMOV %s,R0", result);
-		}
-		if (strcmp(op, "*") == 0)
-		{
-			fprintf(fp2, "\nMOV R0,%s", arg1);
-			fprintf(fp2, "\nMUL R0,%s", arg2);
-			fprintf(fp2, "\nMOV %s,R0", result);
-		}
-		if (strcmp(op, "-") == 0)
-		{
-			fprintf(fp2, "\nMOV R0,%s", arg1);
-			fprintf(fp2, "\nSUB R0,%s", arg2);
-			fprintf(fp2, "\nMOV %s,R0", result);
-		}
-		if (strcmp(op, "/") == 0)
-		{
-			fprintf(fp2, "\nMOV R0,%s", arg1);
-			fprintf(fp2, "\nDIV R0,%s", arg2);
-			fprintf(fp2, "\nMOV %s,R0", result);
-		}
-		if (strcmp(op, "=") == 0)
-		{
-			fprintf(fp2, "\nMOV R0,%s", arg1);
-			fprintf(fp2, "\nMOV %s,R0", result);
-		}
-	}
-	fclose(fp1);
-	fclose(fp2);
+    /*
+     * First remove parentheses.
+     */
+    process_parentheses();
+
+    /*
+     * Generate code according to
+     * operator precedence.
+     */
+    generate('*');
+    generate('/');
+    generate('+');
+    generate('-');
+
+    return 0;
 }
