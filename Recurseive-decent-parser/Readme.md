@@ -1,6 +1,8 @@
 # Prgram to implement recursive decent parser in c
 ## Date :
 ## Algorithm
+ 
+ 
  1. Start.
  2. Declare a global character array input and a global index pos, initialized to 0
  3. Prompt the user to enter an arithmetic expression and read it into input.
